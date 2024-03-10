@@ -14,14 +14,18 @@ pipeline {
                 git branch: "${params.Branches}", url: "https://github.com/Jimmyyiyeong/JenkinsLab.git"
             }
         }
-        stage('Stage2') {
+        stage('Build Trailrunner') {
             steps {
-                echo 'Hello World!'
+                dir('Trailrunner') {
+                    bat 'mvn compile'
+                }
             }
         }
-        stage('Stage3') {
+        stage('Test Trailrunner') {
             steps {
-                echo 'Hello World!'
+                dir('Trailrunner') {
+                    bat 'mvn test'
+                }
             }
         }
         stage('Stage4') {
