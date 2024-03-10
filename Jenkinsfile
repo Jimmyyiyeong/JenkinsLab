@@ -42,6 +42,9 @@ pipeline {
     post {
         always {
             junit '**/TEST*.xml'
+            dir('Selenium') {
+                robot outputPath: 'testresult'
+            }
         }
     }
 }
