@@ -7,8 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
-                echo 'Branch: '${params.Branches}''
+                git branch: "${params.Branches}", url: "https://github.com/Jimmyyiyeong/JenkinsLab.git"
             }
         }
         stage('Stage2') {
