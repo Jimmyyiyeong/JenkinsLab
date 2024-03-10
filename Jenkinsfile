@@ -20,9 +20,11 @@ pipeline {
                     bat 'mvn compile'
             }
         }
-        stage('Stage3') {
+        stage('Test Trailrunner') {
             steps {
-                echo 'Hello World!'
+                dir('Trailrunner') {
+                    bat 'mvn test'
+                }
             }
         }
         stage('Stage4') {
