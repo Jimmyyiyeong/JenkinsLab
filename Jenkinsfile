@@ -14,9 +14,9 @@ pipeline {
                 git branch: "${params.Branches}", url: "https://github.com/Jimmyyiyeong/JenkinsLab.git"
             }
         }
-        stage('Stage2') {
+        stage('Build Trailrunner') {
             steps {
-                echo 'Hello World!'
+                sh 'maven compile'
             }
         }
         stage('Stage3') {
