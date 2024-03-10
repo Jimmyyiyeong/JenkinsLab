@@ -17,7 +17,7 @@ pipeline {
         stage('Build Trailrunner') {
             steps {
                 dir('Trailrunner')
-                    bat 'maven compile'
+                    bat 'mvn compile'
             }
         }
         stage('Stage3') {
