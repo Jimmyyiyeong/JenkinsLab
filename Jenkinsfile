@@ -50,6 +50,7 @@ pipeline {
             dir('Selenium') {
                 robot outputPath: 'testresult'
             }
+            deleteDir()
         }
     }
 }
