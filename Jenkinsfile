@@ -31,9 +31,11 @@ pipeline {
                 }
             }
         }
-        stage('Stage4') {
+        stage('Run Robot Framework') {
             steps {
-                echo 'Hello World!'
+                dir('Selenium') {
+                   bat robot --outputdir testresult browser:headlesschrome BokaBil.robot
+                }
             }
         }
     }
