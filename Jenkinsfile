@@ -6,12 +6,9 @@ pipeline {
     parameters {
         choice choices: ['main', 'b1'], description: 'Which branch do you want to checkout?', name: 'Branches'
     }
-
-
     options {
         skipDefaultCheckout()
     }
-
     stages {
         stage('Checkout') {
             steps {
