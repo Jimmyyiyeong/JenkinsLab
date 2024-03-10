@@ -41,6 +41,11 @@ pipeline {
     }
     post {
         always {
+            jacoco(
+                execPattern: '**/target/jacoco.exec',
+                classPattern: '**/target/classes/se/iths',
+                sourcePattern: '**/src/main/java/se/iths'
+                )
             junit '**/TEST*.xml'
             dir('Selenium') {
                 robot outputPath: 'testresult'
