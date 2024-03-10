@@ -1,10 +1,17 @@
 pipeline {
     agent any
+    parameters {
+        choice(description: 'Which branch do you want to checkout?', name: 'Branches', choices: ['main', 'b1'])
+    }
+
+    options {
+        skipDefaultCheckout(true)
+    }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
+                git branch: "${params.Branches}", url: "https://github.com/Jimmyyiyeong/JenkinsLab.git"
             }
         }
         stage('Stage2') {
