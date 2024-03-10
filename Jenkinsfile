@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Stage1') {
+        stage('Checkout') {
             steps {
-
+                git 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
             }
         }
         stage('Stage2') {
