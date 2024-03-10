@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        gitURL = 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
+    }
     parameters {
         choice(description: 'Which branch do you want to checkout?', name: 'Branches', choices: ['main', 'b1'])
     }
@@ -11,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: "${params.Branches}", url: "https://github.com/Jimmyyiyeong/JenkinsLab.git"
+                git branch: "${params.Branches}", url: "${gitURL}"
             }
         }
         stage('Build Trailrunner') {
@@ -32,6 +35,11 @@ pipeline {
             steps {
                 echo 'Hello World!'
             }
+        }
+    }
+    post {
+        always {
+            junit '**/TEST*.xml'
         }
     }
 }
