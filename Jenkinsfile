@@ -4,13 +4,11 @@ pipeline {
         gitURL = 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
     }
     parameters {
-        choice(description: 'Which branch do you want to checkout?', name: 'Branches', choices: ['main', 'b1'])
+        choice choices: ['main', 'b1'], description: 'Which branch do you want to checkout?', name: 'Branches'
     }
-
     options {
-        skipDefaultCheckout(true)
+        skipDefaultCheckout()
     }
-
     stages {
         stage('Checkout') {
             steps {
@@ -41,6 +39,11 @@ pipeline {
     }
     post {
         always {
+            jacoco(
+                execPattern: '**/target/jacoco.exec',
+                classPattern: '**/target/classes/se/iths',
+                sourcePattern: '**/src/main/java/se/iths'
+                )
             junit '**/TEST*.xml'
             dir('Selenium') {
                 robot outputPath: 'testresult'
