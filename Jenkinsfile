@@ -4,11 +4,12 @@ pipeline {
         gitURL = 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
     }
     parameters {
-        choice(description: 'Which branch do you want to checkout?', name: 'Branches', choices: ['main', 'b1'])
+        choice choices: ['main', 'b1'], description: 'Which branch do you want to checkout?', name: 'Branches'
     }
 
+
     options {
-        skipDefaultCheckout(true)
+        skipDefaultCheckout()
     }
 
     stages {
@@ -50,7 +51,6 @@ pipeline {
             dir('Selenium') {
                 robot outputPath: 'testresult'
             }
-            deleteDir()
         }
     }
 }
