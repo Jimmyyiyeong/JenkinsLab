@@ -20,11 +20,6 @@ pipeline {
                 echo 'This is b1!'
             }
         }
-        stage('Test2') {
-            steps {
-                echo 'Testtesttest'
-            }
-        }
         stage('Build Trailrunner') {
             steps {
                 dir('Trailrunner') {
