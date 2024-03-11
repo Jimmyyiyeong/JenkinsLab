@@ -15,6 +15,11 @@ pipeline {
                 git branch: "${params.Branches}", url: "${gitURL}"
             }
         }
+        stage {
+            steps {
+                echo 'This is b1!'
+            }
+        }
         stage('Build Trailrunner') {
             steps {
                 dir('Trailrunner') {
