@@ -15,7 +15,7 @@ pipeline {
                 git branch: "${params.Branches}", url: "${gitURL}"
             }
         }
-        stage {
+        stage('Test') {
             steps {
                 echo 'This is b1!'
             }
