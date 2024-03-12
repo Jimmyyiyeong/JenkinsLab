@@ -31,18 +31,18 @@ pipeline {
         }
         stage('Trailrunner Result') {
             steps {
-                    jacoco(
-                    execPattern: '**/target/jacoco.exec',
-                    classPattern: '**/target/classes/se/iths',
-                    sourcePattern: '**/src/main/java/se/iths'
-                    )
-                    junit '**/target/surefire-reports/TEST*.xml'
+                jacoco(
+                execPattern: '**/target/jacoco.exec',
+                classPattern: '**/target/classes/se/iths',
+                sourcePattern: '**/src/main/java/se/iths'
+                )
+                junit '**/target/surefire-reports/TEST*.xml'
             }
         }    
         stage('Run Robot Framework') {
             steps {
                 dir('Selenium') {
-                   bat 'robot --outputdir testresult --variable browser:headlesschrome BokaBil.robot'
+                   bat 'robot --outputdir testresult --variable browser:headlesschrome --nostatusrc BokaBil.robot'
                 }
             }
         }
@@ -60,4 +60,3 @@ pipeline {
         }    
     }
 }
-
