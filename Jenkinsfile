@@ -28,6 +28,7 @@ pipeline {
                     bat 'mvn test'
                 }
             }
+        }
         stage('Trailrunner result') {
             steps {
                     jacoco(
@@ -36,9 +37,9 @@ pipeline {
                     sourcePattern: '**/src/main/java/se/iths'
                     )
                     junit '**/TEST*.xml'
-                }
-            }    
-        }
+            }
+        }    
+        
         stage('Run Robot Framework') {
             steps {
                 dir('Selenium') {
