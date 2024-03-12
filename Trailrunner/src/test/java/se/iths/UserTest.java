@@ -84,14 +84,6 @@ public class UserTest {
     }
 
     @Test
-    public void totalDistance2(){
-
-        double totalDistance = user.computeTotalDistance();
-        
-        assertEquals(30, totalDistance);
-    }
-
-    @Test
     public void testAvgDistanceOfAllRuns() {
 
         double totalAvgDistanceOfAllRuns = user.computeAvgDistance();
