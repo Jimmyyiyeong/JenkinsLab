@@ -6,6 +6,9 @@ pipeline {
     parameters {
         choice choices: ['main', 'b1'], description: 'Which branch do you want to checkout?', name: 'Branches'
     }
+    options {
+        skipDefaultCheckout()
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -46,7 +49,7 @@ pipeline {
                 classPattern: '**/target/classes/se/iths',
                 sourcePattern: '**/src/main/java/se/iths'
                 )
-            junit 'target/surefire-reports/*.xml'
+            junit '**/TEST*.xml'
             dir('Selenium') {
                 robot outputPath: 'testresult'
             }
