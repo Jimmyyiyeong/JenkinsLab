@@ -39,20 +39,20 @@ pipeline {
                     junit '**/TEST*.xml'
             }
         }    
-        
         stage('Run Robot Framework') {
             steps {
                 dir('Selenium') {
                    bat 'robot --outputdir testresult --variable browser:headlesschrome BokaBil.robot'
                 }
             }
+        }
         stage('Robot result') {
-                steps {
-                    dir('Selenium') {
-                    robot outputPath: 'testresult'
-                    }
-                }     
-            }
+            steps {
+                dir('Selenium') {
+                robot outputPath: 'testresult'
+                }
+            }     
         }
     }
 }
+
