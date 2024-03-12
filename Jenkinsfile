@@ -49,10 +49,15 @@ pipeline {
         stage('Robot result') {
             steps {
                 dir('Selenium') {
-                robot outputPath: 'testresult'
+                    robot outputPath: 'testresult'
                 }
             }     
         }
+        stage('POST clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }    
     }
 }
 
