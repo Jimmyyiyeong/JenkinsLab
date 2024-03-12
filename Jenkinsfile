@@ -46,7 +46,7 @@ pipeline {
                 classPattern: '**/target/classes/se/iths',
                 sourcePattern: '**/src/main/java/se/iths'
                 )
-            junit '**/TEST*.xml'
+            junit 'target/surefire-reports/*.xml'
             dir('Selenium') {
                 robot outputPath: 'testresult'
             }
