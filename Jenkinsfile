@@ -29,6 +29,16 @@ pipeline {
                 }
             }
         }
+        stage('Trailrunner result') {
+            steps {
+                    jacoco(
+                    execPattern: '**/target/jacoco.exec',
+                    classPattern: '**/target/classes/se/iths',
+                    sourcePattern: '**/src/main/java/se/iths'
+                    )
+                    junit '**/TEST*.xml'
+            }
+        }    
         stage('Run Robot Framework') {
             steps {
                 dir('Selenium') {
@@ -36,18 +46,13 @@ pipeline {
                 }
             }
         }
-    }
-    post {
-        always {
-            jacoco(
-                execPattern: '**/target/jacoco.exec',
-                classPattern: '**/target/classes/se/iths',
-                sourcePattern: '**/src/main/java/se/iths'
-                )
-            junit '**/TEST*.xml'
-            dir('Selenium') {
+        stage('Robot result') {
+            steps {
+                dir('Selenium') {
                 robot outputPath: 'testresult'
-            }
+                }
+            }     
         }
     }
 }
+
