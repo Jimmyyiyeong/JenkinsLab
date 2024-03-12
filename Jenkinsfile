@@ -34,6 +34,7 @@ pipeline {
                     execPattern: '**target/jacoco.exec',
                     classPattern: '**/target/classes/se/iths',
                     sourcePattern: '**/src/main/java/se/iths'
+                    exclusionPattern: '**/src/test*'
                     )
                     junit '**/TEST*.xml'
                 }
