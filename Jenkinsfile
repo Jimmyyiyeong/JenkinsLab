@@ -28,6 +28,12 @@ pipeline {
                     bat 'mvn test'
                 }
             }
+            jacoco(
+                execPattern: 'target/jacoco.exec',
+                classPattern: '**/target/classes/se/iths',
+                sourcePattern: '**/src/main/java/se/iths'
+                )
+            junit '**/TEST*.xml'
         }
         stage('Run Robot Framework') {
             steps {
@@ -35,18 +41,17 @@ pipeline {
                    bat 'robot --outputdir testresult --variable browser:headlesschrome BokaBil.robot'
                 }
             }
+            post {
+                always {
+                    dir('Selenium') {
+                    robot outputPath: 'testresult'
+                }
+            }
         }
     }
     post {
         always {
-            jacoco(
-                execPattern: '**/target/jacoco.exec',
-                classPattern: '**/target/classes/se/iths',
-                sourcePattern: '**/src/main/java/se/iths'
-                )
-            junit '**/TEST*.xml'
-            dir('Selenium') {
-                robot outputPath: 'testresult'
+
             }
         }
     }
