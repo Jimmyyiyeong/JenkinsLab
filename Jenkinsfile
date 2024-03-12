@@ -29,14 +29,14 @@ pipeline {
                 }
             }
         }
-        stage('Trailrunner result') {
+        stage('Trailrunner Result') {
             steps {
                     jacoco(
                     execPattern: '**/target/jacoco.exec',
                     classPattern: '**/target/classes/se/iths',
                     sourcePattern: '**/src/main/java/se/iths'
                     )
-                    junit '**/TEST*.xml'
+                    junit '**/target/surefire-reports/TEST*.xml'
             }
         }    
         stage('Run Robot Framework') {
@@ -46,14 +46,14 @@ pipeline {
                 }
             }
         }
-        stage('Robot result') {
+        stage('Robot Result') {
             steps {
                 dir('Selenium') {
                     robot outputPath: 'testresult'
                 }
-            }     
+            }
         }
-        stage('POST clean workspace') {
+        stage('POST Clean Workspace') {
             steps {
                 cleanWs()
             }
