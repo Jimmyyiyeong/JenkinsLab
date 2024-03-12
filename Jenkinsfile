@@ -28,8 +28,8 @@ pipeline {
                     bat 'mvn test'
                 }
             }
-            post {
-                always {
+        stage('Trailrunner result') {
+            steps {
                     jacoco(
                     execPattern: '**target/jacoco.exec',
                     classPattern: '**/target/classes/se/iths',
@@ -45,8 +45,8 @@ pipeline {
                    bat 'robot --outputdir testresult --variable browser:headlesschrome BokaBil.robot'
                 }
             }
-            post {
-                always {
+        stage('Robot result') {
+                steps {
                     dir('Selenium') {
                     robot outputPath: 'testresult'
                     }
