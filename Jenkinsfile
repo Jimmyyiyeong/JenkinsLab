@@ -49,13 +49,8 @@ pipeline {
                 always {
                     dir('Selenium') {
                     robot outputPath: 'testresult'
-                }
-            }
-        }
-    }
-    post {
-        always {
-
+                    }
+                }     
             }
         }
     }
