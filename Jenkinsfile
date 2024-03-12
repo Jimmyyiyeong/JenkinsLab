@@ -32,7 +32,7 @@ pipeline {
         stage('Trailrunner result') {
             steps {
                     jacoco(
-                    execPattern: '**target/jacoco.exec',
+                    execPattern: '**/target/jacoco.exec',
                     classPattern: '**/target/classes/se/iths',
                     sourcePattern: '**/src/main/java/se/iths'
                     )
