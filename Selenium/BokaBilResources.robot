@@ -34,7 +34,7 @@ Choose dates to book car
     [Documentation]     Tests flow to book car
     [Tags]      bookCar, VG_TEST
     Click Element    //div[@id='logo']
-    Input Text    //input[@id='start']  3-15
+    Input Text    //input[@id='start']  3-26
     Input Text    //input[@id='end']    3-29
     Click Element    //button[@id='continue']
 I choose car to book
