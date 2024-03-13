@@ -15,6 +15,11 @@ pipeline {
                 git branch: "${params.Branches}", url: "${gitURL}"
             }
         }
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }    
         stage('Build Trailrunner') {
             steps {
                 dir('Trailrunner') {
@@ -53,10 +58,5 @@ pipeline {
                 }
             }
         }
-        stage('POST Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }    
     }
 }
