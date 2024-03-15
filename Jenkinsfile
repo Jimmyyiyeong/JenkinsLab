@@ -64,7 +64,7 @@ pipeline {
             emailext(
                 subject: "Build ${currentBuild.fullDisplayName} ${currentBuild.result}",
                 body: "Build ${currentBuild.fullDisplayName} has finished with status: ${currentBuild.result}",
-                to: "jimmy.yiyeong@iths.se",
+                to: "jimmy.yi.yeong@gmail.com",
                 replyTo: "jimmy.yiyeong@iths.se",
                 mimeType: 'text/html'
             )
