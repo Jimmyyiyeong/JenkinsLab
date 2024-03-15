@@ -8,18 +8,18 @@ pipeline {
     }
     options {
         skipDefaultCheckout()
-    }
+    } 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }   
         stage('Checkout') {
             steps {
                 git branch: "${params.Branches}", url: "${gitURL}"
             }
         }
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }    
         stage('Build Trailrunner') {
             steps {
                 dir('Trailrunner') {
