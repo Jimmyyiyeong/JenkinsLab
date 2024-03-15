@@ -60,10 +60,14 @@ pipeline {
         }
     }
     post {
-        success {
-            mail to: 'jimmy.yiyeong@iths.se',
-            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-            body: "Something is wrong with ${env.BUILD_URL}"
+        always {
+            emailext(
+                subject: "Build ${currentBuild.fullDisplayName} ${currentBuild.result}",
+                body: "Build ${currentBuild.fullDisplayName} has finished with status: ${currentBuild.result}",
+                to: "jimmy.yiyeong@iths.se",
+                replyTo: "jimmy.yiyeong@iths.se",
+                mimeType: 'text/html'
+            )
         }
     }
 }
