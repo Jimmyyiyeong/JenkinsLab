@@ -59,4 +59,11 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            mail to: 'jimmy.yiyeong@iths.se',
+            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            body: "Something is wrong with ${env.BUILD_URL}"
+        }
+    }
 }
