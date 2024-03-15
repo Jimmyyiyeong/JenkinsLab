@@ -8,13 +8,13 @@ pipeline {
     }
     options {
         skipDefaultCheckout()
-    }
-    stage('Clean Workspace') {
-        steps {
-            cleanWs()
-        }
-    }    
+    } 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }   
         stage('Checkout') {
             steps {
                 git branch: "${params.Branches}", url: "${gitURL}"
