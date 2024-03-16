@@ -61,13 +61,10 @@ pipeline {
     }
     post {
         always {
-            emailext(
-                subject: "Build ${currentBuild.fullDisplayName} ${currentBuild.result}",
-                body: "Build ${currentBuild.fullDisplayName} has finished with status: ${currentBuild.result}",
-                to: "jimmy.yi.yeong@gmail.com",
-                replyTo: "jimmy.yiyeong@iths.se",
-                mimeType: 'text/html'
-            )
+            mail to: 'jimmy.yi.yeong@gmail.com',
+                subject: "Pipeline finished: ${currentBuild.fullDisplayName}",
+                body: "Check it out: ${env.BUILD_URL}"
+            
         }
     }
 }
