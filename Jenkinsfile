@@ -62,8 +62,8 @@ pipeline {
     post {
         always {
             mail to: 'jimmy.yi.yeong@gmail.com',
-                subject: "Pipeline finished: ${currentBuild.fullDisplayName}",
-                body: "Check it out: ${env.BUILD_URL}"
+                subject: "A build was initiated: ${currentBuild.fullDisplayName} - ${currentBuild.result}",
+                body: "Go to link to view details: ${env.BUILD_URL}"
             
         }
     }
