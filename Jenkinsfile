@@ -45,8 +45,10 @@ pipeline {
                 }
             }
             post {
-                always {
-                    bat "rm -f testresult/*"
+                success {
+                    dir('Selenium/testresult') {
+                        bat 'del /F /Q *'
+                    }
                 }
             }
         }       
