@@ -4,20 +4,12 @@ pipeline {
         gitURL = 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
     }
     parameters {
-        choice choices: ['main', 'b1'], description: 'Which branch do you want to checkout?', name: 'Branches'
-    }
-    options {
-        skipDefaultCheckout()
-    } 
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    }    
     stages {
         stage('Clean Workspace') {
             steps {
                 cleanWs()
-            }
-        }   
-        stage('Checkout') {
-            steps {
-                git branch: "${params.Branches}", url: "${gitURL}"
             }
         }
         stage('Build Trailrunner') {
@@ -57,6 +49,14 @@ pipeline {
                     robot outputPath: 'testresult'
                 }
             }
+        }
+    }
+    post {
+        always {
+            mail to: 'jimmy.yi.yeong@gmail.com',
+                subject: "A build was initiated: ${currentBuild.fullDisplayName} - ${currentBuild.result}",
+                body: "Go to link to view details: ${env.BUILD_URL}"
+            
         }
     }
 }
