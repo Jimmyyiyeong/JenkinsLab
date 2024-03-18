@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        gitURL = 'https://github.com/Jimmyyiyeong/JenkinsLab.git'
-    }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'main', name: 'BRANCH', type: 'PT_BRANCH'
     }    
