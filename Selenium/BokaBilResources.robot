@@ -105,7 +105,7 @@ Given I'm at the create user page and input all information except phonenumber
     Input Text    //input[@id='passwordCreate']    strongpassword123
     Input Text    //input[@id='confirmPassword']    strongpassword123
 When I input the phonenumber in an incorrect format and click create
-    Input Text    //input[@id='phone']    +46123123123
+    Input Text    //input[@id='phone']    0704058658
     Click Element    //button[@id='create']
 Then I should remain on the create user page and get a prompt how to input it correctly
     Page Should Contain Element    //button[@id='create']
