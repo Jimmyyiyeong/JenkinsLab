@@ -10,7 +10,9 @@ pipeline {
         }
         stage ('Static Code Analysis') {
             steps {
-                bat 'mvn spotbugs:spotbugs'
+                dir('Trailrunner') {
+                    bat 'mvn spotbugs:spotbugs'
+                }
             }
         }
         stage('Test Trailrunner') {
