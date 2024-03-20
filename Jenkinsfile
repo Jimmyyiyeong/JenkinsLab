@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    variables {
+    environment {
         pathToExecPattern = '**/target/jacoco.exec'
         pathToClassPattern = '**/target/classes/se/iths'
         pathToSourcePattern = '**/src/main/java/se/ith'
