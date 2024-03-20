@@ -8,12 +8,16 @@ pipeline {
                 }
             }
         }
-        stage ('Static Code Analysis') {
+        stage ('Analyse Trailrunner Code') {
             steps {
                 dir('Trailrunner') {
                     bat 'mvn spotbugs:spotbugs'
                 }
             }
+        }
+        stage('Publish Analyse Report') {
+            def spotbugs = scanForIssues tools: spotBugs(pattern: '**/target/spotbugsXml.xml')
+            publishIssues issues: [spotbugs]
         }
         stage('Test Trailrunner') {
             steps {
