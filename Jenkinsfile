@@ -35,7 +35,7 @@ pipeline {
         stage('Robot Result') {
             steps {
                 dir('Selenium') {
-                    robot outputPath: 'testresult', passThreshold 80
+                    robot outputPath: 'testresult', passThreshold: 80
                 }
             }
             post {
