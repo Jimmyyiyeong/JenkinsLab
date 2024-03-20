@@ -108,8 +108,8 @@ When I input the phonenumber in an incorrect format and click create
     Input Text    //input[@id='phone']      +46123123123
     Click Element    //button[@id='create']
 Then I should remain on the create user page and get a prompt how to input it correctly
-    Page Should Not Contain Element    //button[@id='create']
-    Page Should Not Contain Element   //button[@id='cancel']
+    Page Should Contain Element    //button[@id='create']
+    Page Should Contain Element   //button[@id='cancel']
 
 Start and end date earlier than allowed
     [Documentation]     Input invalid dates when booking car
