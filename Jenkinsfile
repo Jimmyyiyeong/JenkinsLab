@@ -15,9 +15,13 @@ pipeline {
                 }
             }
         }
-        stage('Publish Analyse Report') {
-            def spotbugs = scanForIssues tools: spotBugs(pattern: '**/target/spotbugsXml.xml')
-            publishIssues issues: [spotbugs]
+        stage ('Publish Analyse Report') {
+            steps {
+                dir('Trailrunner') {
+                    def spotbugs = scanForIssues tools: spotBugs(pattern: '**/target/spotbugsXml.xml')
+                    publishIssues issues: [spotbugs]
+                }
+            }
         }
         stage('Test Trailrunner') {
             steps {
