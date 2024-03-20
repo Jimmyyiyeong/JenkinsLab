@@ -19,7 +19,7 @@ pipeline {
             steps {
                 dir('Trailrunner') {
                     script {
-                        def issues = scanForIssues tools: [spotBugs(pattern: '**/target/spotbugsXml.xml')]
+                        def issues = scanForIssues tool: [spotBugs(pattern: '**/target/spotbugsXml.xml')]
                         publishIssues issues: [issues]
                     }
                 }   
