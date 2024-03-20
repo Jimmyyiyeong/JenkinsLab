@@ -1,6 +1,10 @@
 pipeline {
     agent any   
     stages {
+        stage ('Static Code Analysis')
+            steps {
+                bat 'mvn spotbugs:spotbugs'
+            }
         stage('Build Trailrunner') {
             steps {
                 dir('Trailrunner') {
