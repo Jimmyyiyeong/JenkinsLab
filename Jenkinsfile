@@ -18,11 +18,12 @@ pipeline {
         stage ('Publish Analyse Report') {
             steps {
                 dir('Trailrunner') {
-                    def spotbugs = scanForIssues tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
-                    publishIssues issues: [spotbugs]
+                    def issues = scanForIssues tools: [spotBugs(pattern: '**/target/spotbugsXml.xml')]
+                    publishIssues issues: [issues]
                 }
             }
         }
+
         stage('Test Trailrunner') {
             steps {
                 dir('Trailrunner') {
