@@ -1,5 +1,11 @@
 pipeline {
-    agent any   
+    agent any
+    environment {
+        pathToExecPattern = '**/target/jacoco.exec'
+        pathToClassPattern = '**/target/classes/se/iths'
+        pathToSourcePattern = '**/src/main/java/se/ith'
+        pathToJunitTestResults = '**/target/surefire-reports/TEST*.xml'
+    }
     stages {
         stage('Build Trailrunner') {
             steps {
@@ -8,11 +14,21 @@ pipeline {
                 }
             }
         }
-        stage ('Static Code Analysis') {
+        stage ('Analyse Trailrunner Code') {
             steps {
                 dir('Trailrunner') {
                     bat 'mvn spotbugs:spotbugs'
                 }
+            }
+        }
+        stage ('Publish Analyse Report') {
+            steps {
+                dir('Trailrunner') {
+                    script {
+                        def issues = scanForIssues tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
+                        publishIssues([issues])
+                    }
+                }   
             }
         }
         stage('Test Trailrunner') {
@@ -25,11 +41,11 @@ pipeline {
         stage('Trailrunner Result') {
             steps {
                 jacoco(
-                execPattern: '**/target/jacoco.exec',
-                classPattern: '**/target/classes/se/iths',
-                sourcePattern: '**/src/main/java/se/iths'
+                execPattern: "${pathToExecPattern}",
+                classPattern: "${pathToClassPattern}",
+                sourcePattern: "${pathToSourcePattern}"
                 )
-                junit '**/target/surefire-reports/TEST*.xml'
+                junit "${pathToJunitTestResults}"
             }
         }    
         stage('Run Robot Framework') {
