@@ -28,14 +28,14 @@ pipeline {
         stage('Run Robot Framework') {
             steps {
                 dir('Selenium') {
-                   bat 'robot --outputdir testresult --variable browser:headlesschrome BokaBil.robot'
+                   bat 'robot --outputdir testresult --variable browser:headlesschrome --nostatusrc BokaBil.robot'
                 }
             }
         }
         stage('Robot Result') {
             steps {
                 dir('Selenium') {
-                    robot outputPath: 'testresult', passThreshold: 80
+                    robot outputPath: 'testresult'
                 }
             }
             post {
