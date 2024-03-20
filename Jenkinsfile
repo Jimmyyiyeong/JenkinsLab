@@ -8,6 +8,13 @@ pipeline {
                 }
             }
         }
+        stage ('Static Code Analysis') {
+            steps {
+                dir('Trailrunner') {
+                    bat 'mvn spotbugs:spotbugs'
+                }
+            }
+        }
         stage('Test Trailrunner') {
             steps {
                 dir('Trailrunner') {
