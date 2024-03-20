@@ -28,7 +28,7 @@ pipeline {
         stage('Run Robot Framework') {
             steps {
                 dir('Selenium') {
-                   bat 'robot --outputdir testresult --variable browser:headlesschrome BokaBil.robot'
+                   bat 'robot --outputdir testresult --variable browser:headlesschrome --nostatusrc BokaBil.robot'
                 }
             }
         }
